@@ -1,0 +1,133 @@
+/* frontend/css/styles.css */
+body {
+    background-color: #f8f9fa;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.container {
+    max-width: 1200px;
+}
+
+header h1 {
+    color: #343a40;
+    font-weight: 600;
+}
+
+.card {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: none;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.card-header {
+    padding: 15px 20px;
+}
+
+.card-body {
+    padding: 25px;
+}
+
+#food-image-container {
+    height: 150px;
+    width: 150px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    overflow: hidden;
+    background-color: #f8f9fa;
+}
+
+#food-image {
+    max-height: 100%;
+    max-width: 100%;
+    object-fit: cover;
+}
+
+.nutrition-facts {
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #e9ecef;
+}
+
+.nutrition-facts h4 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.nutrition-facts hr {
+    border-top: 5px solid #343a40;
+    margin: 5px 0 15px;
+}
+
+.nutrition-facts p {
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+#log-food-btn {
+    margin-top: 15px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th {
+    background-color: #f1f1f1;
+    border-bottom: 2px solid #ddd;
+    text-align: left;
+    padding: 12px;
+    font-weight: 600;
+}
+
+td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+}
+
+.btn-primary, .bg-primary {
+    background-color: #007bff !important;
+}
+
+.btn-success, .bg-success {
+    background-color: #28a745 !important;
+}
+
+.toast {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    max-width: 300px;
+}
+
+/* Animation for new entries */
+@keyframes highlight {
+    0% {
+        background-color: #ffeeba;
+    }
+    100% {
+        background-color: transparent;
+    }
+}
+
+.highlight-row {
+    animation: highlight 2s ease;
+}
+
+/* Responsive adjustments */
+@media (max-width: 767px) {
+    .nutrition-facts {
+        margin-top: 20px;
+    }
+    
+    #food-image-container {
+        margin-bottom: 20px;
+    }
+}
