@@ -104,13 +104,19 @@ function displayNutritionInfo(data) {
         foodImage.src = data.photo.thumb;
         foodImage.alt = data.food_name;
     } else {
-        foodImage.src = 'https://via.placeholder.com/150?text=No+Image';
+        foodImage.src = 'https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=200&h=200&fit=crop';
         foodImage.alt = 'No Image Available';
     }
     
     // Set food name and serving
     foodTitle.textContent = data.food_name;
     foodServing.textContent = `${data.serving_qty} ${data.serving_unit} (${data.serving_weight_grams}g)`;
+    
+    // Set large calorie display
+    const caloriesLarge = document.getElementById('calories-large');
+    if (caloriesLarge) {
+        caloriesLarge.textContent = Math.round(data.calories);
+    }
     
     // Set nutrition values
     caloriesElem.textContent = Math.round(data.calories);
@@ -125,6 +131,14 @@ function displayNutritionInfo(data) {
     
     // Show nutrition results
     nutritionResults.classList.remove('d-none');
+    
+    // Add animation class
+    nutritionResults.classList.add('fade-in-up');
+    
+    // Scroll to results
+    setTimeout(() => {
+        nutritionResults.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 300);
 }
 
 // Handle logging food

@@ -58,14 +58,19 @@ function displayFoodHistory(historyData) {
         
         // Format date
         const date = new Date(entry.timestamp);
-        const formattedDate = `${date.toLocaleDateString()} ${date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`;
+        const formattedDate = date.toLocaleDateString('en-US', { 
+            month: 'short', 
+            day: 'numeric',
+            hour: '2-digit', 
+            minute: '2-digit' 
+        });
         
         // Set row content
         row.innerHTML = `
             <td>${formattedDate}</td>
-            <td>${entry.food_name}</td>
+            <td><strong>${entry.food_name}</strong></td>
             <td>${entry.quantity}</td>
-            <td>${Math.round(nutrition.calories)}</td>
+            <td><span class="badge bg-primary">${Math.round(nutrition.calories)}</span></td>
             <td>${nutrition.protein?.toFixed(1) || '0'}g</td>
             <td>${nutrition.total_carbohydrate?.toFixed(1) || '0'}g</td>
             <td>${nutrition.total_fat?.toFixed(1) || '0'}g</td>
@@ -74,6 +79,15 @@ function displayFoodHistory(historyData) {
         // Add row to table
         historyTableBody.appendChild(row);
     });
+    
+    // Add fade-in animation to new rows
+    setTimeout(() => {
+        const rows = historyTableBody.querySelectorAll('tr');
+        rows.forEach((row, index) => {
+            row.style.animationDelay = `${index * 0.1}s`;
+            row.classList.add('fade-in-up');
+        });
+    }, 100);
 }
 
 // Calculate daily nutrition totals

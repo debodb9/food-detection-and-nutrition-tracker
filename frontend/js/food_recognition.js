@@ -45,10 +45,10 @@ function addImageRecognitionUI() {
     imageRecognitionDiv.innerHTML = `
         <label class="form-label">Food Image Recognition</label>
         <div class="d-flex gap-2 mb-2">
-            <button type="button" id="camera-button" class="btn btn-secondary flex-grow-1">
+            <button type="button" id="camera-button" class="btn btn-outline-primary flex-grow-1">
                 <i class="fas fa-camera"></i> Take Photo
             </button>
-            <label for="image-upload" class="btn btn-secondary mb-0 flex-grow-1">
+            <label for="image-upload" class="btn btn-outline-primary mb-0 flex-grow-1">
                 <i class="fas fa-upload"></i> Upload Image
             </label>
             <input type="file" id="image-upload" accept="image/*" class="d-none">
@@ -57,7 +57,7 @@ function addImageRecognitionUI() {
             <img id="preview-image" class="img-fluid rounded mb-2" alt="Food preview">
             <div class="d-flex gap-2">
                 <button type="button" id="recognize-image-btn" class="btn btn-primary flex-grow-1">
-                    Recognize Food
+                    <i class="fas fa-magic me-1"></i>Recognize Food
                 </button>
                 <button type="button" id="cancel-image-btn" class="btn btn-outline-secondary">
                     <i class="fas fa-times"></i>
@@ -65,7 +65,8 @@ function addImageRecognitionUI() {
             </div>
         </div>
         <div id="recognition-results" class="mt-2 d-none">
-            <div class="alert alert-info">
+            <div class="alert alert-info d-flex align-items-center">
+                <i class="fas fa-info-circle me-2"></i>
                 <span id="recognition-message"></span>
             </div>
         </div>
