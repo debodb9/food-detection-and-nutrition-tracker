@@ -1,133 +1,788 @@
-/* frontend/css/styles.css */
+/* Modern CSS Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* Color System */
+    --primary-50: #f0f9ff;
+    --primary-100: #e0f2fe;
+    --primary-200: #bae6fd;
+    --primary-300: #7dd3fc;
+    --primary-400: #38bdf8;
+    --primary-500: #0ea5e9;
+    --primary-600: #0284c7;
+    --primary-700: #0369a1;
+    --primary-800: #075985;
+    --primary-900: #0c4a6e;
+    
+    --success-50: #f0fdf4;
+    --success-100: #dcfce7;
+    --success-200: #bbf7d0;
+    --success-300: #86efac;
+    --success-400: #4ade80;
+    --success-500: #22c55e;
+    --success-600: #16a34a;
+    --success-700: #15803d;
+    --success-800: #166534;
+    --success-900: #14532d;
+    
+    --warning-50: #fffbeb;
+    --warning-100: #fef3c7;
+    --warning-200: #fde68a;
+    --warning-300: #fcd34d;
+    --warning-400: #fbbf24;
+    --warning-500: #f59e0b;
+    --warning-600: #d97706;
+    --warning-700: #b45309;
+    --warning-800: #92400e;
+    --warning-900: #78350f;
+    
+    --error-50: #fef2f2;
+    --error-100: #fee2e2;
+    --error-200: #fecaca;
+    --error-300: #fca5a5;
+    --error-400: #f87171;
+    --error-500: #ef4444;
+    --error-600: #dc2626;
+    --error-700: #b91c1c;
+    --error-800: #991b1b;
+    --error-900: #7f1d1d;
+    
+    --neutral-50: #fafafa;
+    --neutral-100: #f5f5f5;
+    --neutral-200: #e5e5e5;
+    --neutral-300: #d4d4d4;
+    --neutral-400: #a3a3a3;
+    --neutral-500: #737373;
+    --neutral-600: #525252;
+    --neutral-700: #404040;
+    --neutral-800: #262626;
+    --neutral-900: #171717;
+    
+    /* Typography */
+    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-mono: 'JetBrains Mono', 'Fira Code', Consolas, monospace;
+    
+    /* Spacing System (8px base) */
+    --space-1: 0.25rem;  /* 4px */
+    --space-2: 0.5rem;   /* 8px */
+    --space-3: 0.75rem;  /* 12px */
+    --space-4: 1rem;     /* 16px */
+    --space-5: 1.25rem;  /* 20px */
+    --space-6: 1.5rem;   /* 24px */
+    --space-8: 2rem;     /* 32px */
+    --space-10: 2.5rem;  /* 40px */
+    --space-12: 3rem;    /* 48px */
+    --space-16: 4rem;    /* 64px */
+    --space-20: 5rem;    /* 80px */
+    
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+    
+    /* Border Radius */
+    --radius-sm: 0.375rem;
+    --radius-md: 0.5rem;
+    --radius-lg: 0.75rem;
+    --radius-xl: 1rem;
+    --radius-2xl: 1.5rem;
+    
+    /* Transitions */
+    --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-normal: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-slow: 350ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
 body {
-    background-color: #f8f9fa;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: var(--font-sans);
+    background: linear-gradient(135deg, var(--primary-50) 0%, var(--neutral-50) 100%);
+    color: var(--neutral-800);
+    line-height: 1.6;
+    min-height: 100vh;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 .container {
     max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--space-4);
+}
+
+/* Header Styles */
+header {
+    text-align: center;
+    margin: var(--space-8) 0 var(--space-12);
+    position: relative;
+}
+
+header::before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-500), var(--success-500));
+    border-radius: var(--radius-sm);
 }
 
 header h1 {
-    color: #343a40;
-    font-weight: 600;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--primary-600), var(--success-600));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: var(--space-3);
+    letter-spacing: -0.02em;
 }
 
+header h1 i {
+    color: var(--primary-500);
+    margin-right: var(--space-3);
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+/* Card Styles */
 .card {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border: none;
-    margin-bottom: 20px;
-    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-lg);
+    margin-bottom: var(--space-8);
     overflow: hidden;
+    transition: all var(--transition-normal);
+    position: relative;
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-xl);
 }
 
 .card-header {
-    padding: 15px 20px;
+    padding: var(--space-6) var(--space-8);
+    position: relative;
+    overflow: hidden;
+}
+
+.card-header.bg-primary {
+    background: linear-gradient(135deg, var(--primary-500), var(--primary-600));
+    color: white;
+}
+
+.card-header.bg-success {
+    background: linear-gradient(135deg, var(--success-500), var(--success-600));
+    color: white;
+}
+
+.card-header.bg-dark {
+    background: linear-gradient(135deg, var(--neutral-800), var(--neutral-900));
+    color: white;
+}
+
+.card-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transition: left var(--transition-slow);
+}
+
+.card:hover .card-header::before {
+    left: 100%;
+}
+
+.card-header h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0;
+    letter-spacing: -0.01em;
 }
 
 .card-body {
-    padding: 25px;
+    padding: var(--space-8);
 }
 
+/* Form Styles */
+.form-label {
+    font-weight: 500;
+    color: var(--neutral-700);
+    margin-bottom: var(--space-2);
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.form-control {
+    border: 2px solid var(--neutral-200);
+    border-radius: var(--radius-lg);
+    padding: var(--space-4) var(--space-5);
+    font-size: 1rem;
+    transition: all var(--transition-fast);
+    background: white;
+    color: var(--neutral-800);
+    font-family: var(--font-sans);
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: var(--primary-400);
+    box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.1);
+    transform: translateY(-1px);
+}
+
+.form-control::placeholder {
+    color: var(--neutral-400);
+    font-style: italic;
+}
+
+/* Button Styles */
+.btn {
+    border: none;
+    border-radius: var(--radius-lg);
+    padding: var(--space-4) var(--space-6);
+    font-weight: 500;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    position: relative;
+    overflow: hidden;
+    text-decoration: none;
+    font-family: var(--font-sans);
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left var(--transition-normal);
+}
+
+.btn:hover::before {
+    left: 100%;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary-500), var(--primary-600));
+    color: white;
+    box-shadow: var(--shadow-md);
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, var(--primary-600), var(--primary-700));
+    box-shadow: var(--shadow-lg);
+}
+
+.btn-success {
+    background: linear-gradient(135deg, var(--success-500), var(--success-600));
+    color: white;
+    box-shadow: var(--shadow-md);
+}
+
+.btn-success:hover {
+    background: linear-gradient(135deg, var(--success-600), var(--success-700));
+    box-shadow: var(--shadow-lg);
+}
+
+.btn-secondary {
+    background: linear-gradient(135deg, var(--neutral-100), var(--neutral-200));
+    color: var(--neutral-700);
+    border: 1px solid var(--neutral-300);
+}
+
+.btn-secondary:hover {
+    background: linear-gradient(135deg, var(--neutral-200), var(--neutral-300));
+    color: var(--neutral-800);
+}
+
+.btn-outline-secondary {
+    background: transparent;
+    color: var(--neutral-600);
+    border: 2px solid var(--neutral-300);
+}
+
+.btn-outline-secondary:hover {
+    background: var(--neutral-100);
+    border-color: var(--neutral-400);
+}
+
+.btn-outline-light {
+    background: transparent;
+    color: white;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.btn-outline-light:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+.btn-lg {
+    padding: var(--space-5) var(--space-8);
+    font-size: 1rem;
+}
+
+.btn i {
+    font-size: 1.1em;
+}
+
+/* Image Recognition Styles */
 #food-image-container {
-    height: 150px;
-    width: 150px;
-    margin: 0 auto;
+    height: 200px;
+    width: 200px;
+    margin: 0 auto var(--space-4);
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 5px;
+    border-radius: var(--radius-xl);
     overflow: hidden;
-    background-color: #f8f9fa;
+    background: linear-gradient(135deg, var(--neutral-50), var(--neutral-100));
+    border: 2px dashed var(--neutral-300);
+    position: relative;
+    transition: all var(--transition-normal);
+}
+
+#food-image-container:hover {
+    border-color: var(--primary-400);
+    background: linear-gradient(135deg, var(--primary-50), var(--neutral-50));
 }
 
 #food-image {
     max-height: 100%;
     max-width: 100%;
     object-fit: cover;
+    border-radius: var(--radius-lg);
+    transition: transform var(--transition-normal);
 }
 
+#food-image:hover {
+    transform: scale(1.05);
+}
+
+#preview-container {
+    background: var(--neutral-50);
+    border-radius: var(--radius-lg);
+    padding: var(--space-4);
+    border: 1px solid var(--neutral-200);
+}
+
+#preview-image {
+    border-radius: var(--radius-lg);
+    max-height: 200px;
+    width: 100%;
+    object-fit: cover;
+}
+
+/* Nutrition Facts Styles */
 .nutrition-facts {
-    background-color: #f8f9fa;
-    padding: 15px;
-    border-radius: 8px;
-    border: 1px solid #e9ecef;
+    background: linear-gradient(135deg, var(--neutral-50), white);
+    padding: var(--space-6);
+    border-radius: var(--radius-xl);
+    border: 1px solid var(--neutral-200);
+    position: relative;
+    overflow: hidden;
+}
+
+.nutrition-facts::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary-500), var(--success-500));
 }
 
 .nutrition-facts h4 {
-    font-size: 18px;
+    font-size: 1.25rem;
     font-weight: 600;
-    margin-bottom: 10px;
+    margin-bottom: var(--space-4);
+    color: var(--neutral-800);
+    text-align: center;
 }
 
 .nutrition-facts hr {
-    border-top: 5px solid #343a40;
-    margin: 5px 0 15px;
+    border: none;
+    height: 3px;
+    background: linear-gradient(90deg, var(--neutral-300), var(--neutral-400), var(--neutral-300));
+    margin: var(--space-2) 0 var(--space-5);
+    border-radius: var(--radius-sm);
 }
 
 .nutrition-facts p {
-    margin-bottom: 8px;
-    font-size: 14px;
+    margin-bottom: var(--space-3);
+    font-size: 0.875rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-2) 0;
+    border-bottom: 1px solid var(--neutral-100);
 }
 
-#log-food-btn {
-    margin-top: 15px;
+.nutrition-facts p:last-child {
+    border-bottom: none;
+}
+
+.nutrition-facts strong {
+    color: var(--neutral-700);
+    font-weight: 500;
+}
+
+/* Table Styles */
+.table-responsive {
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
+    background: white;
 }
 
 th {
-    background-color: #f1f1f1;
-    border-bottom: 2px solid #ddd;
-    text-align: left;
-    padding: 12px;
+    background: linear-gradient(135deg, var(--neutral-100), var(--neutral-200));
+    color: var(--neutral-700);
     font-weight: 600;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: var(--space-4) var(--space-5);
+    text-align: left;
+    border-bottom: 2px solid var(--neutral-300);
 }
 
 td {
-    padding: 12px;
-    border-bottom: 1px solid #ddd;
+    padding: var(--space-4) var(--space-5);
+    border-bottom: 1px solid var(--neutral-100);
+    font-size: 0.875rem;
+    transition: background-color var(--transition-fast);
 }
 
-.btn-primary, .bg-primary {
-    background-color: #007bff !important;
+tr:hover td {
+    background-color: var(--primary-50);
 }
 
-.btn-success, .bg-success {
-    background-color: #28a745 !important;
+tr:last-child td {
+    border-bottom: none;
 }
 
+/* Toast Styles */
 .toast {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    max-width: 300px;
+    border: none;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-xl);
+    backdrop-filter: blur(10px);
+    overflow: hidden;
 }
 
-/* Animation for new entries */
+.toast.bg-success {
+    background: linear-gradient(135deg, var(--success-500), var(--success-600)) !important;
+}
+
+.toast.bg-danger {
+    background: linear-gradient(135deg, var(--error-500), var(--error-600)) !important;
+}
+
+.toast-header {
+    background: rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
+.toast-body {
+    color: white;
+    font-weight: 500;
+}
+
+/* Alert Styles */
+.alert {
+    border: none;
+    border-radius: var(--radius-lg);
+    padding: var(--space-4) var(--space-5);
+    margin-bottom: var(--space-4);
+    font-weight: 500;
+    position: relative;
+    overflow: hidden;
+}
+
+.alert::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 4px;
+}
+
+.alert-info {
+    background: linear-gradient(135deg, var(--primary-50), var(--primary-100));
+    color: var(--primary-800);
+    border-left: 4px solid var(--primary-500);
+}
+
+.alert-success {
+    background: linear-gradient(135deg, var(--success-50), var(--success-100));
+    color: var(--success-800);
+    border-left: 4px solid var(--success-500);
+}
+
+.alert-danger {
+    background: linear-gradient(135deg, var(--error-50), var(--error-100));
+    color: var(--error-800);
+    border-left: 4px solid var(--error-500);
+}
+
+/* Animation Classes */
 @keyframes highlight {
     0% {
-        background-color: #ffeeba;
+        background-color: var(--warning-100);
+        transform: scale(1.02);
     }
     100% {
         background-color: transparent;
+        transform: scale(1);
     }
 }
 
 .highlight-row {
-    animation: highlight 2s ease;
+    animation: highlight 2s ease-out;
 }
 
-/* Responsive adjustments */
-@media (max-width: 767px) {
-    .nutrition-facts {
-        margin-top: 20px;
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in-up {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.7;
+    }
+}
+
+.pulse {
+    animation: pulse 2s infinite;
+}
+
+/* Loading States */
+.loading {
+    position: relative;
+    pointer-events: none;
+}
+
+.loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin: -10px 0 0 -10px;
+    border: 2px solid var(--primary-200);
+    border-top: 2px solid var(--primary-500);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Camera Modal Styles */
+#camera-container {
+    background: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(10px);
+}
+
+.camera-view {
+    box-shadow: var(--shadow-xl);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Utility Classes */
+.text-gradient {
+    background: linear-gradient(135deg, var(--primary-600), var(--success-600));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.glass-effect {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: var(--space-3);
+    }
+    
+    header {
+        margin: var(--space-6) 0 var(--space-8);
+    }
+    
+    header h1 {
+        font-size: 2rem;
+    }
+    
+    .card-body {
+        padding: var(--space-6);
+    }
+    
+    .card-header {
+        padding: var(--space-4) var(--space-6);
     }
     
     #food-image-container {
-        margin-bottom: 20px;
+        height: 150px;
+        width: 150px;
+    }
+    
+    .nutrition-facts {
+        margin-top: var(--space-6);
+    }
+    
+    .btn {
+        padding: var(--space-3) var(--space-5);
+        font-size: 0.8rem;
+    }
+    
+    .btn-lg {
+        padding: var(--space-4) var(--space-6);
+        font-size: 0.875rem;
+    }
+    
+    table {
+        font-size: 0.75rem;
+    }
+    
+    th, td {
+        padding: var(--space-2) var(--space-3);
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: var(--space-2);
+    }
+    
+    .card-body {
+        padding: var(--space-4);
+    }
+    
+    .nutrition-facts .row .col-6 {
+        width: 100%;
+        margin-bottom: var(--space-2);
+    }
+}
+
+/* Dark mode support (optional) */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --neutral-50: #171717;
+        --neutral-100: #262626;
+        --neutral-200: #404040;
+        --neutral-300: #525252;
+        --neutral-400: #737373;
+        --neutral-500: #a3a3a3;
+        --neutral-600: #d4d4d4;
+        --neutral-700: #e5e5e5;
+        --neutral-800: #f5f5f5;
+        --neutral-900: #fafafa;
+    }
+    
+    body {
+        background: linear-gradient(135deg, var(--neutral-900) 0%, var(--neutral-800) 100%);
+        color: var(--neutral-100);
+    }
+}
+
+/* Focus styles for accessibility */
+.btn:focus,
+.form-control:focus {
+    outline: 2px solid var(--primary-500);
+    outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .card {
+        border: 2px solid var(--neutral-800);
+    }
+    
+    .btn {
+        border: 2px solid currentColor;
+    }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
     }
 }
